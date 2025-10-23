@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gato - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            overflow: hidden;
+            background: #000;
+            color: #fff;
+            font-weight: 300;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #000000 0%, #0a0a1a 50%, #000000 100%);
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #1e40af 0%, #1e3a8a 100%);
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #4c1d95 0%, #2e1065 100%);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 5s;
+        }
+
+        .orb3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #1e3a8a 0%, #0c1844 100%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            50% {
+                transform: translate(-30px, 50px) scale(0.9);
+            }
+            75% {
+                transform: translate(40px, 30px) scale(1.05);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            gap: 3rem;
+        }
+
+        .content {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .gradient-gato {
+            background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6, #a855f7, #8b5cf6, #6366f1, #3b82f6);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s linear infinite;
+        }
+
+        .description {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+            letter-spacing: 0.01em;
+            min-height: 2em;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .gradient-link {
+            background: linear-gradient(90deg, #3b82f6, #1e40af, #1e3a8a, #1e40af, #3b82f6);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s linear infinite;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+
+        .gradient-link:hover {
+            transform: scale(1.05);
+        }
+
+        .gradient-python {
+            background: linear-gradient(90deg, #fbbf24, #3b82f6, #1e40af, #3b82f6, #fbbf24);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s linear infinite;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .gradient-luau {
+            background: linear-gradient(90deg, #ffffff, #93c5fd, #3b82f6, #93c5fd, #ffffff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s linear infinite;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .italic-gray {
+            font-style: italic;
+            color: #9ca3af;
+            font-weight: 300;
+            text-shadow: 0 0 15px rgba(156, 163, 175, 0.4);
+        }
+
+        .discord-section {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+            min-height: 1.5em;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .discord-username {
+            color: #5865f2;
+            font-weight: 400;
+        }
+
+        .text-reveal {
+            display: inline;
+        }
+
+        .text-reveal:nth-child(1) { animation-delay: 0.2s; }
+        .text-reveal:nth-child(2) { animation-delay: 0.3s; }
+        .text-reveal:nth-child(3) { animation-delay: 0.4s; }
+        .text-reveal:nth-child(4) { animation-delay: 0.5s; }
+        .text-reveal:nth-child(5) { animation-delay: 0.6s; }
+        .text-reveal:nth-child(6) { animation-delay: 0.7s; }
+        .text-reveal:nth-child(7) { animation-delay: 0.8s; }
+        .text-reveal:nth-child(8) { animation-delay: 0.9s; }
+        .text-reveal:nth-child(9) { animation-delay: 1s; }
+        .text-reveal:nth-child(10) { animation-delay: 1.1s; }
+        .text-reveal:nth-child(11) { animation-delay: 1.2s; }
+
+        .learning-section {
+            margin-top: 1.5rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.8s backwards;
+            color: #d1d5db;
+            min-height: 1.5em;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .discord-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .discord-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .discord-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #5865f2;
+            position: relative;
+        }
+
+        .status-indicator {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid #000;
+            background: #43b581;
+        }
+
+        .status-indicator.offline {
+            background: #747f8d;
+        }
+
+        .status-indicator.idle {
+            background: #faa61a;
+        }
+
+        .status-indicator.dnd {
+            background: #f04747;
+        }
+
+        .discord-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .discord-name {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .discord-tag {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .learning-section {
+            margin-top: 1.5rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.8s backwards;
+            color: #d1d5db;
+        }
+
+        .discord-status {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-label {
+            color: #9ca3af;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-value {
+            color: #fff;
+            font-weight: 400;
+        }
+
+        .activity {
+            color: #fff;
+            font-weight: 400;
+            margin-top: 0.5rem;
+        }
+
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: #fff;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            51%, 100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                gap: 2rem;
+            }
+
+            .discord-card {
+                padding: 1.5rem;
+            }
+
+            .discord-avatar {
+                width: 60px;
+                height: 60px;
+            }
+
+            .status-indicator {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <h1>Hey, I'am <span class="gradient-gato">Gato</span>!</h1>
+            <p class="description" id="description1"></p>
+            <p class="learning-section" id="learning"></p>
+            <p class="description discord-section" id="description2"></p>
+        </div>
+
+        <div class="discord-card">
+            <div class="discord-header">
+                <div style="position: relative;">
+                    <img id="avatar" class="discord-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Discord Avatar">
+                    <div id="status" class="status-indicator"></div>
+                </div>
+                <div class="discord-info">
+                    <div id="username" class="discord-name">Loading...</div>
+                    <div class="discord-tag">not_.gato</div>
+                </div>
+            </div>
+            <div class="discord-status">
+                <div class="status-row">
+                    <span class="status-label">Status</span>
+                    <span id="statusText" class="status-value">Loading...</span>
+                </div>
+                <div class="status-row">
+                    <span class="status-label">User ID</span>
+                    <span class="status-value">1333631679570645082</span>
+                </div>
+                <div id="activitySection" style="display: none;">
+                    <div class="status-label" style="margin-top: 0.75rem;">Activity</div>
+                    <div id="activity" class="activity"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function typeWriter(element, html, speed = 50) {
+            let i = 0;
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            const text = tempDiv.textContent || tempDiv.innerText;
+            
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    const char = text.charAt(i);
+                    const currentHTML = element.innerHTML;
+                    
+                    let htmlIndex = 0;
+                    let textIndex = 0;
+                    let result = '';
+                    
+                    while (htmlIndex < html.length && textIndex <= i) {
+                        if (html[htmlIndex] === '<') {
+                            const tagEnd = html.indexOf('>', htmlIndex);
+                            result += html.substring(htmlIndex, tagEnd + 1);
+                            htmlIndex = tagEnd + 1;
+                        } else {
+                            result += html[htmlIndex];
+                            textIndex++;
+                            htmlIndex++;
+                        }
+                    }
+                    
+                    element.innerHTML = result + '<span class="typewriter-cursor"></span>';
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.innerHTML = html;
+                }
+            }
+            
+            type();
+        }
+
+        const description1HTML = 'I am currently working on <a href="https://getunx.vercel.app" target="_blank" rel="noopener noreferrer" class="gradient-link">UNXHub</a> that is my latest project, <span class="italic-gray">and my only project</span>.';
+        
+        const learningHTML = 'Currently learning: <span class="gradient-python">Python 3.X</span>, <span class="gradient-luau">Basic LUAU</span>';
+        
+        const description2HTML = 'If you\'d like to contact me; just check out my discord <span class="discord-username">(not_.gato)</span>!';
+
+        setTimeout(() => {
+            typeWriter(document.getElementById('description1'), description1HTML, 30);
+        }, 500);
+
+        setTimeout(() => {
+            typeWriter(document.getElementById('learning'), learningHTML, 30);
+        }, 3500);
+
+        setTimeout(() => {
+            typeWriter(document.getElementById('description2'), description2HTML, 30);
+        }, 6000);
+
+        const DISCORD_ID = '1333631679570645082';
+        const LANYARD_API = `https://api.lanyard.rest/v1/users/${DISCORD_ID}`;
+
+        async function updateDiscordStatus() {
+            try {
+                const response = await fetch(LANYARD_API);
+                const data = await response.json();
+
+                if (data.success && data.data) {
+                    const user = data.data.discord_user;
+                    const status = data.data.discord_status;
+                    const activities = data.data.activities;
+
+                    const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`;
+                    document.getElementById('avatar').src = avatarUrl;
+
+                    document.getElementById('username').textContent = user.global_name || user.username;
+
+                    const statusIndicator = document.getElementById('status');
+                    statusIndicator.className = `status-indicator ${status}`;
+
+                    const statusTexts = {
+                        online: 'Online',
+                        idle: 'Idle',
+                        dnd: 'Do Not Disturb',
+                        offline: 'Offline'
+                    };
+                    document.getElementById('statusText').textContent = statusTexts[status] || 'Unknown';
+
+                    const activityElement = document.getElementById('activity');
+                    const activitySection = document.getElementById('activitySection');
+                    
+                    if (activities && activities.length > 0) {
+                        const activity = activities[0];
+                        let activityText = '';
+
+                        if (activity.type === 0) {
+                            activityText = `Playing ${activity.name}`;
+                            if (activity.details) activityText += ` - ${activity.details}`;
+                        } else if (activity.type === 1) {
+                            activityText = `Streaming ${activity.details || activity.name}`;
+                        } else if (activity.type === 2) {
+                            activityText = `Listening to ${activity.details || activity.name}`;
+                            if (activity.state) activityText += ` by ${activity.state}`;
+                        } else if (activity.type === 3) {
+                            activityText = `Watching ${activity.name}`;
+                        } else if (activity.type === 4) {
+                            activityText = activity.state || activity.name || 'Custom Status';
+                        } else if (activity.type === 5) {
+                            activityText = `Competing in ${activity.name}`;
+                        } else {
+                            activityText = activity.name;
+                        }
+
+                        activityElement.textContent = activityText;
+                        activitySection.style.display = 'block';
+                    } else {
+                        activitySection.style.display = 'none';
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching Discord status:', error);
+                document.getElementById('statusText').textContent = 'Unable to fetch';
+                document.getElementById('activitySection').style.display = 'none';
+            }
+        }
+
+        updateDiscordStatus();
+        setInterval(updateDiscordStatus, 30000);
+    </script>
+</body>
+</html>
