@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oops!, Not Found :(</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            overflow: hidden;
+            background: #000;
+            color: #fff;
+            font-weight: 300;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #000000 0%, #0a0a1a 50%, #000000 100%);
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #1e40af 0%, #1e3a8a 100%);
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #4c1d95 0%, #2e1065 100%);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 5s;
+        }
+
+        .orb3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #1e3a8a 0%, #0c1844 100%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 50px) scale(0.9); }
+            75% { transform: translate(40px, 30px) scale(1.05); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(5rem, 10vw, 8rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6, #a855f7);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s linear infinite, blinkGlow 2s infinite alternate ease-in-out;
+            text-shadow: 0 0 40px rgba(99, 102, 241, 0.5);
+            transition: opacity 0.1s ease, transform 0.1s ease;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes blinkGlow {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(99, 102, 241, 0.8), 0 0 60px rgba(139, 92, 246, 0.6);
+            }
+            50% {
+                opacity: 0.5;
+                text-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+            }
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: #d1d5db;
+            font-weight: 400;
+            margin-top: 1rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: #9ca3af;
+            margin-top: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        a.button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 12px;
+            font-weight: 500;
+            background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6);
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        a.button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
+
+    <div class="container">
+        <h1 id="blinkText">404</h1>
+        <h2>Oops!, Not Found :(</h2>
+        <p>You seem to have drifted into the void. Let’s get you back home.</p>
+        <a href="https://ilygato.vercel.app" class="button">Return Home</a>
+    </div>
+
+    <script>
+        const blinkText = document.getElementById('blinkText');
+        setInterval(() => {
+            blinkText.textContent = "-0-";
+            blinkText.style.opacity = "0.6";
+            blinkText.style.transform = "scale(0.95)";
+            setTimeout(() => {
+                blinkText.textContent = "404";
+                blinkText.style.opacity = "1";
+                blinkText.style.transform = "scale(1)";
+            }, 200); // 0.2 seconds total blink duration
+        }, 4000); // blink every 4 seconds
+    </script>
+</body>
+</html>
